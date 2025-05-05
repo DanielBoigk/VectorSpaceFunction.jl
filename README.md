@@ -7,21 +7,3 @@ The goal with this package is too have basic function types like piece wise func
 
 
 Routines that simplify the function into a computationally efficient version are also planned.
-
-The ultimate goal is to have a library of optics that can combine into one uniform machine learning framework. 
-
-
-| Method        | Differentiable | Scalar Product     | Localized | Good in High Dim | Ready | Online Approx | Fully constructed Optics | P-D-Optimization |
-| ------------- | -------------- | ------------------ | --------- | ---------------- | ----- | ------------- | ------------------------ | ---------------- |
-| Polynomials   | ✅              | ✅ (orthogonal)     | ❌         | ⚠️               |       |               |                          |                  |
-| Rational      | ✅              | ⚠️                 | ❌         | ✅                |       |               |                          |                  |
-| RBFs          | ✅              | ✅                  | ✅         | ✅                |       |               |                          |                  |
-| Splines       | ✅              | ✅                  | ✅         | ⚠️               |       |               |                          |                  |
-| Fourier       | ✅              | ✅ (FFT)            | ❌         | ✅                |       |               |                          |                  |
-| Wavelets      | ✅              | ✅                  | ✅         | ⚠️               |       |               |                          |                  |
-| Orth. Polys   | ✅              | ✅                  | ⚠️        | ⚠️               |       |               |                          |                  |
-| Kernels       | ✅              | ✅ (kernel-defined) | ⚠️        | ✅                |       |               |                          |                  |
-| Neural Nets   | ✅              | ⚠️ (numerical)     | ✅         | ✅                |       |               |                          |                  |
-| Tensor Bases  | ✅              | ✅                  | ❌         | ⚠️               |       |               |                          |                  |
-| Hardy/Bergman | ✅              | ✅                  | ❌         | ⚠️               |       |               |                          |                  |
-
