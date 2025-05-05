@@ -1,0 +1,4 @@
+name = "VectorSpaceFunction"
+uuid = "aa603bcc-7b48-4aa0-b14c-c06ab16fa26d"
+authors = ["DanielBoigk <dn.boigk@gmail.com>"]
+version = "0.1.0"
