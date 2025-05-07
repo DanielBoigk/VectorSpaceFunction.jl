@@ -1,4 +1,12 @@
-name = "VectorSpaceFunction"
+name = "VectorSpaceFunctions"
 uuid = "aa603bcc-7b48-4aa0-b14c-c06ab16fa26d"
 authors = ["DanielBoigk <dn.boigk@gmail.com>"]
 version = "0.1.0"
+
+[deps]
+LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
+Polynomials = "871314dc-2431-5653-a6a0-3f3e1cf48c6c"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+CUDA = "052768ef-5323-5732-b1bb-66c8b64840ba"
