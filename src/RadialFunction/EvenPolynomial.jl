@@ -1,4 +1,4 @@
-struct EvenPolynomial{T<:Number}
+struct EvenPolynomial{T<:Number} <: AbstractPolynomial{T}
     coeffs::Vector{T}
     function EvenPolynomial(coeffs::Vector{T}) where {T<:Number}
         isempty(coeffs) && throw(ArgumentError("Coefficient vector cannot be empty"))
@@ -7,6 +7,14 @@ struct EvenPolynomial{T<:Number}
 end
 
 EvenPolynomial(coeffs::T...) where {T<:Number} = EvenPolynomial(collect(coeffs))
+
+
+length(p::EvenPolynomial) = length(p.coeffs)
+grade(p::EvenPolynomial) = 2*length(p) 
+
+function derivative(p::EvenPolynomial{T}) where {T<:Number}
+    return OddPolynomial([2 * i * p.coeffs[i] for i in 1:length(p.coeffs)])    
+end
 
 function (p::EvenPolynomial{T})(x::S) where {T<:Number, S<:Number}
     x2 = x * x
@@ -56,3 +64,50 @@ function batch_eval(polys::Vector{EvenPolynomial{T1}}, x::Vector{T2}) where {T1<
 
     return results
 end
+
+function +(p::EvenPolynomial{T}, q::EvenPolynomial{S}) where {T<:Number, S<:Number}
+    n = length(p.coeffs)
+    m = length(q.coeffs)
+    max_len = max(n, m)
+    result_coeffs = zeros(promote_type(T, S), max_len)
+    for i in 1:n
+        result_coeffs[i] += p.coeffs[i]
+    end
+    for i in 1:m
+        result_coeffs[i] += q.coeffs[i]
+    end
+    return EvenPolynomial(result_coeffs)
+end
+function -(p::EvenPolynomial{T}) where {T<:Number}
+    return EvenPolynomial(-p.coeffs)
+end
+function -(p::EvenPolynomial{T}, q::EvenPolynomial{S}) where {T<:Number, S<:Number}
+    return p + (-q)
+end
+
+function ==(p::EvenPolynomial{T}, q::EvenPolynomial{S}) where {T<:Number, S<:Number}
+    return p.coeffs == q.coeffs
+end
+
+function ≈(p::EvenPolynomial{T}, q::EvenPolynomial{S}) where {T<:Number, S<:Number}
+    return p.coeffs ≈ q.coeffs
+end
+
+function *(p::EvenPolynomial{T}, q::EvenPolynomial{S}) where {T<:Number, S<:Number}
+    n = length(p.coeffs)
+    m = length(q.coeffs)
+    result_coeffs = zeros(promote_type(T,S), n + m - 1)
+    for i in 1:n
+        for j in 1:m
+            result_coeffs[i + j - 1] += p.coeffs[i] * q.coeffs[j]
+        end
+    end
+    return EvenPolynomial(result_coeffs)
+end
+function *(p::EvenPolynomial{T}, a::S}) where {T<:Number, S<:Number}
+    return EvenPolynomial(p.coeffs .* a)
+end
+function *(a::S, p::EvenPolynomial{T}) where {T<:Number, S<:Number}
+    return EvenPolynomial(p.coeffs .* a)
+end
+
