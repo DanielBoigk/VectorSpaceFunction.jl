@@ -1,5 +1,7 @@
 # VectorSpaceFunction.jl
 
+**Under development**
+
 This package implements basic arithmetic operations + and * for arbitrary functions and numbers.
 Note: There is no check whether the function actually has the right input and domain. There is also no check whether the underlying scalar type is commutative.
 
