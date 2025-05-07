@@ -1,4 +1,4 @@
-# VectorSpaceFunction.jl
+# VectorSpaceFunctions.jl
 
 **Under development**
 
