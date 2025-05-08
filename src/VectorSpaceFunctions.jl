@@ -1,7 +1,7 @@
-module VectorSpaceFunction
+module VectorSpaceFunctions
 
 include("VectorSpaceFunction/VectorSpaceFunction.jl")
-include("RadialFunction/RadialFunction.jl")
+#include("RadialFunction/RadialFunction.jl")
 
 greet() = print("Hello World!")
 
