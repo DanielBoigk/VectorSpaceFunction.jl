@@ -3,4 +3,4 @@ using VectorSpaceFunctions
 using LinearAlgebra
 using Polynomials
 
-@testset "VectorSpaceFunction" begin include("test/VectorSpaceFunction.jl") end
+@testset "VectorSpaceFunction" begin include("VectorSpaceFunction.jl") end

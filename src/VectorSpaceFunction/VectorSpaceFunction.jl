@@ -1,16 +1,29 @@
 
-import Base: +,*, inv, identity, ==, ≈
-export VectorSpaceFunction
+import Base: +,-, *, inv, identity, ==, ≈
+export VectorSpaceFunction, +, *, -, ==, ≈, simplify
 
 
-struct VectorSpaceFunction <: Function
-    functions::Vector{Function}
-    coefficients::Vector{Number}
-    VectorSpaceFunction(functions::Vector{Function}, coefficients::Vector{Number}) = new(functions, coefficients)
+struct VectorSpaceFunction{F<:Function, C<:Number} <: Function
+    functions::Vector{F}
+    coefficients::Vector{C}
 end
 
+
 function (vsf::VectorSpaceFunction)(x)
-    sum(vsf.functions[i](x) * vsf.coefficients[i] for i in 1:length(vsf.functions))
+    sum(vsf.functions[i](x) * vsf.coefficients[i] for i in eachindex(vsf.functions))
+end
+
+function evaluate_with_debug(vsf::VectorSpaceFunction, x)
+    try
+        vsf(x)
+    catch e
+        func_types = map(typeof, vsf.functions)
+        error("""
+        Failed to evaluate VectorSpaceFunction on input of type $(typeof(x)).
+        Function list: $func_types
+        Error: $e
+        """)
+    end
 end
 
 function +(vsf1::VectorSpaceFunction, vsf2::VectorSpaceFunction)
